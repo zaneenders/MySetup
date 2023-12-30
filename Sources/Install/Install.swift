@@ -76,7 +76,7 @@ let dotZSHRCcontents = """
 
     # Swift Path
     # TODO where do I want to move this?
-    export PATH=/home/zane/Downloads/swift-5.9.2-RELEASE-ubi9-aarch64/usr/bin:"${PATH}"
+    export PATH=/home/zane/.scribe/.repositories/swift-5.9.2-RELEASE-ubi9-aarch64/usr/bin:"${PATH}"
     # Racket path
     export PATH=/home/zane/.scribe/.repositories/racket/racket/bin/:"${PATH}"
 
