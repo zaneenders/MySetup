@@ -15,7 +15,8 @@ env:
 window:
   # transparent background
   opacity: 0.7
-  decorations: none
+  # removes window chrome which I like but need hotkeys to manage window size and arrangement then
+  # decorations: none
   # Window title
   title: Terminal
 
