@@ -1,3 +1,7 @@
+--[[
+TODO setup and figure out splitting window
+--]]
+
 -- keybindings
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 -- tabs and spaces
@@ -152,7 +156,13 @@ require("telescope").setup({
 require("telescope").load_extension("file_browser")
 -- Maybe I can move these bindings to the config above
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", ";t", ":Telescope file_browser<CR><Esc>", { noremap = true })
+-- vim.keymap.set("n", ";t", ":Telescope file_browser<CR><Esc>", { noremap = true })
+vim.api.nvim_set_keymap(
+  "n",
+  ";y",
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR><Esc>",
+  { noremap = true }
+)
 vim.keymap.set("n", ";f", function()
   local builtin = require("telescope.builtin")
   builtin.find_files({
