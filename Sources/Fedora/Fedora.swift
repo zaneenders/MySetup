@@ -2,6 +2,7 @@
 # Fedora Settings
 
 TODO Fix sleep settings
+TODO Fix Background image resolution
 Turn on keyboard light
     - /sys/class/leds/kbd_backlight/brightness
     - range from 0 to 255
