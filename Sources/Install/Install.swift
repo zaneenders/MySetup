@@ -80,6 +80,9 @@ let dotZSHRCcontents = """
     # Racket path
     export PATH=/home/zane/.scribe/.repositories/racket/racket/bin/:"${PATH}"
 
+    # NeoVim as defualt editor
+    export EDITOR=/usr/bin/nvim
+
     # Fly.io Path
     export FLYCTL_INSTALL="/home/zane/.fly"
     export PATH="$FLYCTL_INSTALL/bin:$PATH"
@@ -87,7 +90,9 @@ let dotZSHRCcontents = """
     plugins=(git)
     source $ZSH/oh-my-zsh.sh
     """
+
 func setupZSHConfig() {
+    print("Updateing .zshrc")
     let zshPath = "\(System.homePath)/.zshrc"
     do {
         if FileSystem.fileExists(atPath: zshPath) {
@@ -98,7 +103,7 @@ func setupZSHConfig() {
         print(error.localizedDescription)
     }
 }
-print("Updateing .zshrc")
+
 setupZSHConfig()
 
 // TODO setup reset/override current setup and a flag to pass in
