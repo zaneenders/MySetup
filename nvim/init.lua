@@ -323,6 +323,12 @@ vim.opt.scrolloff = 8
 -- Set vertical line
 vim.opt.colorcolumn = "80"
 
+vim.keymap.set('n', '/', '<nop>')
+
+-- [[ Embeeded Terminal ]]
+-- Exit's termianl/insert mode back to normal mode
+vim.keymap.set('t', '<C-[>', [[<C-\><C-n>]])
+
 -- [[ Color Scheme ]]
 
 local c = require('onedark.colors')
