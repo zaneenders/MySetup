@@ -1,3 +1,5 @@
+-- https://github.com/nvim-lua/kickstart.nvim
+-- TODO watch: https://www.youtube.com/watch?v=stqUbv-5u2s
 --[[
 
 =====================================================================
@@ -124,7 +126,7 @@ require('lazy').setup({
         change = { text = '~' },
         delete = { text = '_' },
         topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        changedelete = { text = '|' },
       },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
@@ -470,6 +472,14 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
+function test()
+  print("hello")
+  -- run exnternal process
+  -- https://www.reddit.com/r/neovim/comments/t9e546/run_external_process_from_neovim_with_lua/
+end
+
+vim.api.nvim_set_keymap("n",";q", "test()" ,{ noremap = true })
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -568,7 +578,8 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  -- TODO disable documentation so LSP works better
+  nmap('H', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
