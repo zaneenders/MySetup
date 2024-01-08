@@ -258,7 +258,10 @@ require('lazy').setup({
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  }
+  },
+  {
+    'nvim-treesitter/playground'
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -314,6 +317,62 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- Set space page space below cursor
+vim.opt.scrolloff = 8
+-- Set vertical line
+vim.opt.colorcolumn = "80"
+
+-- [[ Color Scheme ]]
+
+local c = require('onedark.colors')
+require('onedark').setup {
+  -- Main options --
+  style = 'deep',               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  transparent = false,          -- Show/hide background
+  term_colors = true,           -- Change terminal color as per the selected theme style
+  ending_tildes = false,        -- Show the end-of-buffer tildes. By default they are hidden
+  cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+
+  -- toggle theme style ---
+  toggle_style_key = nil,                                                              -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+  toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
+
+  -- Change code style ---
+  -- Options are italic, bold, underline, none
+  -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+  code_style = {
+    comments = 'italic',
+    keywords = 'bold',
+    functions = 'none',
+    strings = 'none',
+    variables = 'none'
+  },
+
+  -- Lualine options --
+  lualine = {
+    transparent = false, -- lualine center bar transparency
+  },
+
+  -- Custom Highlights --
+  colors = {},   -- Override default colors
+  highlights = { -- Override highlight groups
+    -- ["@label"] = { fg = c.purple },
+    -- TODO Maybe come back to this
+    -- https://github.com/tiagovla/tokyodark.nvim/blob/master/lua/tokyodark/highlights.lua
+    -- https://github.com/navarasu/onedark.nvim/tree/dc3bad0121298f89b50aaff8599d1946e07eb4c2#customization
+    -- https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/highlights.lua#L133-L257
+  },
+
+  -- Plugins Config --
+  diagnostics = {
+    darker = true,     -- darker colors for diagnostic
+    undercurl = true,  -- use undercurl instead of underline for diagnostics
+    background = true, -- use background color for virtual text
+  },
+}
+-- Lua
+require('onedark').load()
 
 -- [[ Basic Keymaps ]]
 
@@ -414,8 +473,9 @@ vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+-- TODO enter in Normal mode
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
+vim.keymap.set({ 'n', 'v' }, '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
@@ -465,6 +525,8 @@ require("telescope").load_extension "file_browser"
 
 -- open file_browser with the path of the current buffer
 -- TODO move to mappings
+-- TODO look into custom Pickers
+-- https://www.reddit.com/r/neovim/comments/qke56i/telescope_always_show_a_file_even_if_in_gitignore/
 vim.api.nvim_set_keymap(
   "n",
   ";y",
@@ -478,8 +540,31 @@ function test()
   -- https://www.reddit.com/r/neovim/comments/t9e546/run_external_process_from_neovim_with_lua/
 end
 
-vim.api.nvim_set_keymap("n",";q", "test()" ,{ noremap = true })
+vim.api.nvim_set_keymap("n", ";q", "test()", { noremap = true })
 
+-- [[ Treesitter Playground ]]
+vim.defer_fn(function()
+  require "nvim-treesitter.configs".setup {
+    playground = {
+      enable = true,
+      disable = {},
+      updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+      persist_queries = false, -- Whether the query persists across vim sessions
+      keybindings = {
+        toggle_query_editor = 'o',
+        toggle_hl_groups = 'i',
+        toggle_injected_languages = 't',
+        toggle_anonymous_nodes = 'a',
+        toggle_language_display = 'I',
+        focus_language = 'f',
+        unfocus_language = 'F',
+        update = 'R',
+        goto_node = '<cr>',
+        show_help = '?',
+      },
+    }
+  }
+end, 0)
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
