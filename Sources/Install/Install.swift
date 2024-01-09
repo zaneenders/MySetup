@@ -69,6 +69,28 @@ let flyDotIOPathUpdate = """
     export PATH="$FLYCTL_INSTALL/bin:$PATH"
     """
 
+let macZSHRCContents = """
+    export ZSH="$HOME/.oh-my-zsh"
+
+    ZSH_THEME="robbyrussell"
+
+    # Swift Path
+    # MacOS Takes care of this
+
+    # Racket path
+    export PATH=:/Users/zane/.scribe/.repositories/Racketv8.11.1/bin:"${PATH}"
+
+    # NeoVim as defualt editor
+    export EDITOR=/usr/bin/nvim
+
+    # Fly.io Path
+    export FLYCTL_INSTALL="/home/zane/.fly"
+    export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+    plugins=(git)
+    source $ZSH/oh-my-zsh.sh
+    """
+
 let dotZSHRCcontents = """
     export ZSH="$HOME/.oh-my-zsh"
 
@@ -98,7 +120,12 @@ func setupZSHConfig() {
         if FileSystem.fileExists(atPath: zshPath) {
             try FileSystem.removeItem(atPath: zshPath)
         }
-        try FileSystem.write(string: dotZSHRCcontents, to: zshPath)
+        switch System.os {
+        case .macos:
+            try FileSystem.write(string: macZSHRCContents, to: zshPath)
+        case .linux:
+            try FileSystem.write(string: dotZSHRCcontents, to: zshPath)
+        }
     } catch {
         print(error.localizedDescription)
     }
