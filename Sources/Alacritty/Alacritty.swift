@@ -1,6 +1,7 @@
 import ScribeSystem
 
 public func setupAlacritty() async {
+    // TODO Change font size based on OS. MacOS seems to be smallar font at 20
     print("hello from Alacritty setup")
     // TODO change to path of Package
     let commands = """
