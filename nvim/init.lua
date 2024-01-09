@@ -325,12 +325,15 @@ vim.opt.colorcolumn = "80"
 
 vim.keymap.set('n', '/', '<nop>')
 
+-- [[ Window Management ]]
+-- TODO add keys to move between windows and add and remove splits
+
 -- [[ Embeeded Terminal ]]
 -- Exit's termianl/insert mode back to normal mode
 vim.keymap.set('t', '<C-[>', [[<C-\><C-n>]])
 
 -- [[ Color Scheme ]]
-
+-- TODO remove red
 local c = require('onedark.colors')
 require('onedark').setup {
   -- Main options --
@@ -509,6 +512,14 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 -- Telescope File Broswer
 require("telescope").setup {
   extensions = {
+    pickers = {
+      folder_browse = {
+        hidden = true
+      },
+      file_browser = {
+        hidden = true
+      }
+    },
     file_browser = {
       theme = "ivy",
       -- disables netrw and use telescope-file-browser in its place
@@ -531,14 +542,17 @@ require("telescope").load_extension "file_browser"
 
 -- open file_browser with the path of the current buffer
 -- TODO move to mappings
--- TODO look into custom Pickers
--- https://www.reddit.com/r/neovim/comments/qke56i/telescope_always_show_a_file_even_if_in_gitignore/
-vim.api.nvim_set_keymap(
-  "n",
-  ";y",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR><Esc>", -- <Esc> to open in normal mode, delete to open in insert mode
-  { noremap = true }
-)
+vim.keymap.set("n", ";u", function()
+  local file_browser = require "telescope".extensions.file_browser.file_browser
+  file_browser({
+    -- show git ignored paths
+    no_ignore = true,
+    -- show dot files
+    hidden = true,
+    -- open in normal mode
+    on_complete = { function() vim.cmd "stopinsert" end }
+  })
+end, {})
 
 function test()
   print("hello")
