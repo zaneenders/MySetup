@@ -18,7 +18,10 @@ import ScribeSystem
 ///
 /// Maybe I can use this?
 /// https://github.com/nvim-telescope/telescope-file-browser.nvim/blob/8e0543365fe5781c9babea7db89ef06bcff3716d/doc/telescope-file-browser.txt#L342C1-L342C39
-///
+/// Questions:
+/// What is Tag stack?
+/// How do I make new tabs for files
+
 /// Maybe I don't need ZSH?
 public func setupNeoVim() async {
     print("hello from nvim setup")

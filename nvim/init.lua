@@ -545,12 +545,15 @@ require("telescope").load_extension "file_browser"
 vim.keymap.set("n", ";u", function()
   local file_browser = require "telescope".extensions.file_browser.file_browser
   file_browser({
+    -- this breaks stopinsert
+    path='%:p:h', -- TODO what does this do
+    select_buffer = true,
     -- show git ignored paths
     no_ignore = true,
     -- show dot files
     hidden = true,
     -- open in normal mode
-    on_complete = { function() vim.cmd "stopinsert" end }
+    on_complete = { function() vim.cmd("stopinsert") end }
   })
 end, {})
 
@@ -587,6 +590,9 @@ vim.defer_fn(function()
 end, 0)
 
 -- [[ Configure Treesitter ]]
+-- TODO code folding
+
+
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
