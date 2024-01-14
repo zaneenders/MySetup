@@ -121,7 +121,7 @@ func setupZSHConfig() {
             try FileSystem.removeItem(atPath: zshPath)
         }
         switch System.os {
-        case .macos:
+        case .macOS:
             try FileSystem.write(string: macZSHRCContents, to: zshPath)
         case .linux:
             try FileSystem.write(string: dotZSHRCcontents, to: zshPath)
