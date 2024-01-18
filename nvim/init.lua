@@ -614,6 +614,11 @@ require("telescope").setup {
 -- you need to call load_extension, somewhere after setup function:
 require("telescope").load_extension "file_browser"
 
+-- Open's a new terminal in the current buffer
+vim.keymap.set("n", ";i", function()
+  vim.cmd(":terminal")
+end, {})
+
 -- open file_browser with the path of the current buffer
 -- TODO move to mappings
 vim.keymap.set("n", ";u", function()
