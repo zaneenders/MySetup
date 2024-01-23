@@ -22,9 +22,15 @@ let package = Package(
                 "NeoVim",
                 "Alacritty",
                 "Git",
+                "SSH",
             ], swiftSettings: swiftSettings),
         .target(
             name: "Git",
+            dependencies: [
+                .product(name: "ScribeSystem", package: "ScribeSystem")
+            ], swiftSettings: swiftSettings),
+        .target(
+            name: "SSH",
             dependencies: [
                 .product(name: "ScribeSystem", package: "ScribeSystem")
             ], swiftSettings: swiftSettings),

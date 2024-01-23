@@ -1,6 +1,7 @@
 import Alacritty
 import Git
 import NeoVim
+import SSH
 import ScribeSystem
 
 /*
@@ -131,6 +132,7 @@ func setupZSHConfig() {
     }
 }
 
+SSH.setup()
 setupZSHConfig()
 
 // TODO setup reset/override current setup and a flag to pass in
