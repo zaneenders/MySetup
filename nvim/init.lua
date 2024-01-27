@@ -45,7 +45,6 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -400,8 +399,14 @@ vim.opt.spell = true
 vim.keymap.set('n', '/', '<nop>')
 
 -- [[ Window Management ]]
--- TODO add keys to move between windows and add and remove splits
-
+-- Alt+[hjkl] to navigate through splits in terminal mode
+vim.keymap.set({'n','t'}, '<A-h>', [[<C-\><C-n><C-w>h]])
+vim.keymap.set({'n','t'}, '<A-j>', [[<C-\><C-n><C-w>j]])
+vim.keymap.set({'n','t'}, '<A-k>', [[<C-\><C-n><C-w>k]])
+vim.keymap.set({'n','t'}, '<A-l>', [[<C-\><C-n><C-w>l]])
+-- Create new windows (s)lit and split (v)vertical
+vim.keymap.set({'n','t'}, '<A-s>', [[<C-\><C-n><C-w>s]])
+vim.keymap.set({'n','t'}, '<A-v>', [[<C-\><C-n><C-w>v]])
 -- [[ Embedded Terminal ]]
 -- Exit's termianl/insert mode back to normal mode
 vim.keymap.set('t', '<C-[>', [[<C-\><C-n>]])
