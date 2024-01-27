@@ -404,9 +404,10 @@ vim.keymap.set({'n','t'}, '<A-h>', [[<C-\><C-n><C-w>h]])
 vim.keymap.set({'n','t'}, '<A-j>', [[<C-\><C-n><C-w>j]])
 vim.keymap.set({'n','t'}, '<A-k>', [[<C-\><C-n><C-w>k]])
 vim.keymap.set({'n','t'}, '<A-l>', [[<C-\><C-n><C-w>l]])
--- Create new windows (s)lit and split (v)vertical
+-- Create new windows (s)lit aertialnd split (v)vertical
 vim.keymap.set({'n','t'}, '<A-s>', [[<C-\><C-n><C-w>s]])
 vim.keymap.set({'n','t'}, '<A-v>', [[<C-\><C-n><C-w>v]])
+vim.keymap.set({'n','t'}, '<A-w>', [[<C-\><C-n>:q!<CR>]])
 -- [[ Embedded Terminal ]]
 -- Exit's termianl/insert mode back to normal mode
 vim.keymap.set('t', '<C-[>', [[<C-\><C-n>]])
