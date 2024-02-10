@@ -97,6 +97,8 @@ let dotZSHRCcontents = """
 
     ZSH_THEME="robbyrussell"
 
+    # Scribe Path
+    export PATH=/home/zane/.scribe/.bin:"${PATH}"
     # Swift Path
     # TODO where do I want to move this?
     export PATH=/home/zane/.scribe/.repositories/swift-5.9.2-RELEASE-ubi9-aarch64/usr/bin:"${PATH}"
