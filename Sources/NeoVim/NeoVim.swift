@@ -32,6 +32,9 @@ public func setupNeoVim() async {
     let linuxCommand = """
         ln -s /home/zane/.scribe/Packages/MySetup/nvim/* /home/zane/.config/nvim/
         """
+    let command = """
+        ln -s \(System.scribePath)/Packages/MySetup/nvim/* \(System.homePath).config/nvim/
+        """
     let nvimFolderPath = "\(System.configPath)/nvim"
 
     print(nvimFolderPath)
@@ -43,7 +46,7 @@ public func setupNeoVim() async {
         case .macOS:
             try? await System.shell(commands)
         case .linux:
-            try? await System.shell(linuxCommand)
+            try? await System.shell(command)
         }
     } else {
         print(

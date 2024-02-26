@@ -265,7 +265,7 @@ require('lazy').setup({
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      signs = true,  -- show icons in the signs column
+      signs = true,      -- show icons in the signs column
       sign_priority = 8, -- sign priority
       -- keywords recognized as todo comments
       keywords = {
@@ -283,8 +283,8 @@ require('lazy').setup({
         TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
       },
       gui_style = {
-        fg = "NONE",     -- The gui style to use for the fg highlight group.
-        bg = "BOLD",     -- The gui style to use for the bg highlight group.
+        fg = "NONE",         -- The gui style to use for the fg highlight group.
+        bg = "BOLD",         -- The gui style to use for the bg highlight group.
       },
       merge_keywords = true, -- when true, custom keywords will be merged with the defaults
       -- highlighting of the line containing the todo comment
@@ -292,16 +292,16 @@ require('lazy').setup({
       -- * keyword: highlights of the keyword
       -- * after: highlights after the keyword (todo text)
       highlight = {
-        multiline = true,            -- enable multine todo comments
-        multiline_pattern = "^.",    -- lua pattern to match the next multiline from the start of the matched keyword
-        multiline_context = 10,      -- extra lines that will be re-evaluated when changing a line
-        before = "",                 -- "fg" or "bg" or empty
-        keyword = "wide",            -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-        after = "fg",                -- "fg" or "bg" or empty
+        multiline = true,                -- enable multine todo comments
+        multiline_pattern = "^.",        -- lua pattern to match the next multiline from the start of the matched keyword
+        multiline_context = 10,          -- extra lines that will be re-evaluated when changing a line
+        before = "",                     -- "fg" or "bg" or empty
+        keyword = "wide",                -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+        after = "fg",                    -- "fg" or "bg" or empty
         pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-        comments_only = true,        -- uses treesitter to match keywords in comments only
-        max_line_len = 400,          -- ignore lines longer than this
-        exclude = {},                -- list of file types to exclude highlighting
+        comments_only = true,            -- uses treesitter to match keywords in comments only
+        max_line_len = 400,              -- ignore lines longer than this
+        exclude = {},                    -- list of file types to exclude highlighting
       },
       -- list of named colors where we try to extract the guifg from the
       -- list of highlight groups or use the hex color if hl not found as a fallback
@@ -400,14 +400,14 @@ vim.keymap.set('n', '/', '<nop>')
 
 -- [[ Window Management ]]
 -- Alt+[hjkl] to navigate through splits in terminal mode
-vim.keymap.set({'n','t'}, '<A-h>', [[<C-\><C-n><C-w>h]])
-vim.keymap.set({'n','t'}, '<A-j>', [[<C-\><C-n><C-w>j]])
-vim.keymap.set({'n','t'}, '<A-k>', [[<C-\><C-n><C-w>k]])
-vim.keymap.set({'n','t'}, '<A-l>', [[<C-\><C-n><C-w>l]])
+vim.keymap.set({ 'n', 't' }, '<A-h>', [[<C-\><C-n><C-w>h]])
+vim.keymap.set({ 'n', 't' }, '<A-j>', [[<C-\><C-n><C-w>j]])
+vim.keymap.set({ 'n', 't' }, '<A-k>', [[<C-\><C-n><C-w>k]])
+vim.keymap.set({ 'n', 't' }, '<A-l>', [[<C-\><C-n><C-w>l]])
 -- Create new windows (s)lit aertialnd split (v)vertical
-vim.keymap.set({'n','t'}, '<A-s>', [[<C-\><C-n><C-w>s]])
-vim.keymap.set({'n','t'}, '<A-v>', [[<C-\><C-n><C-w>v]])
-vim.keymap.set({'n','t'}, '<A-w>', [[<C-\><C-n>:q!<CR>]])
+vim.keymap.set({ 'n', 't' }, '<A-s>', [[<C-\><C-n><C-w>s]])
+vim.keymap.set({ 'n', 't' }, '<A-v>', [[<C-\><C-n><C-w>v]])
+vim.keymap.set({ 'n', 't' }, '<A-w>', [[<C-\><C-n>:q!<CR>]])
 -- [[ Embedded Terminal ]]
 -- Exit's termianl/insert mode back to normal mode
 vim.keymap.set('t', '<C-[>', [[<C-\><C-n>]])
@@ -503,13 +503,14 @@ require('telescope').setup {
   },
 }
 
+local ignoreDirs = { ".build", ".git", ".repositories", ".data" }
 -- TODO move to mappings
 vim.keymap.set("n", ";f", function()
   local builtin = require("telescope.builtin")
   builtin.find_files({
     no_ignore = true,
     hidden = true,
-    file_ignore_patterns = { ".build", ".git", ".repositories" },
+    file_ignore_patterns = ignoreDirs,
   })
 end, {})
 vim.keymap.set("n", ";g", function()
@@ -517,7 +518,7 @@ vim.keymap.set("n", ";g", function()
   builtin.live_grep({
     no_ignore = true,
     hidden = true,
-    file_ignore_patterns = { ".build", ".git", ".repositories" },
+    file_ignore_patterns = ignoreDirs,
   })
 end, {})
 
