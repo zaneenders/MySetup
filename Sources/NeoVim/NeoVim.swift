@@ -33,7 +33,7 @@ public func setupNeoVim() async {
         ln -s /home/zane/.scribe/Packages/MySetup/nvim/* /home/zane/.config/nvim/
         """
     let command = """
-        ln -s \(System.scribePath)/Packages/MySetup/nvim/* \(System.homePath).config/nvim/
+        ln -s \(System.scribePath)/Packages/MySetup/nvim/* \(System.configPath)/nvim/
         """
     let nvimFolderPath = "\(System.configPath)/nvim"
 
