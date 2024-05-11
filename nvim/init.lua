@@ -386,7 +386,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- Set space page space below cursor
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 4
 -- Set vertical line
 vim.opt.colorcolumn = "80"
 
@@ -395,22 +395,21 @@ vim.opt.colorcolumn = "80"
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
--- unbind file search in favor of <C-/>
-vim.keymap.set('n', '/', '<nop>')
 
 -- [[ Window Management ]]
 -- Alt+[hjkl] to navigate through splits in terminal mode
-vim.keymap.set({ 'n', 't' }, '<A-h>', [[<C-\><C-n><C-w>h]])
-vim.keymap.set({ 'n', 't' }, '<A-j>', [[<C-\><C-n><C-w>j]])
-vim.keymap.set({ 'n', 't' }, '<A-k>', [[<C-\><C-n><C-w>k]])
-vim.keymap.set({ 'n', 't' }, '<A-l>', [[<C-\><C-n><C-w>l]])
+vim.keymap.set({ 'n', 't' }, ';h', [[<C-\><C-n><C-w>h]])
+vim.keymap.set({ 'n', 't' }, ';j', [[<C-\><C-n><C-w>j]])
+vim.keymap.set({ 'n', 't' }, ';k', [[<C-\><C-n><C-w>k]])
+vim.keymap.set({ 'n', 't' }, ';l', [[<C-\><C-n><C-w>l]])
 -- Create new windows (s)lit aertialnd split (v)vertical
-vim.keymap.set({ 'n', 't' }, '<A-s>', [[<C-\><C-n><C-w>s]])
-vim.keymap.set({ 'n', 't' }, '<A-v>', [[<C-\><C-n><C-w>v]])
-vim.keymap.set({ 'n', 't' }, '<A-w>', [[<C-\><C-n>:q!<CR>]])
+vim.keymap.set({ 'n', 't' }, ';s', [[<C-\><C-n><C-w>s]])
+vim.keymap.set({ 'n', 't' }, ';v', [[<C-\><C-n><C-w>v]])
+vim.keymap.set({ 'n', 't' }, ';w', [[<C-\><C-n>:q!<CR>]])
 -- [[ Embedded Terminal ]]
 -- Exit's termianl/insert mode back to normal mode
 vim.keymap.set('t', '<C-[>', [[<C-\><C-n>]])
+vim.keymap.set('t', "<C-'>", [[<C-\><C-n>]])
 
 -- [[ Color Scheme ]]
 -- TODO remove red
@@ -684,7 +683,7 @@ end, 0)
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'racket', 'swift', 'r' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'racket', 'swift', 'r', 'toml', 'ron' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
