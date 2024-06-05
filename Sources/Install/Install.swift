@@ -65,7 +65,6 @@ import ScribeSystem
 // // TODO install fly.io for website
 // let flyInstallCMD = "curl -L https://fly.io/install.sh | sh"
 
-
 // let macZSHRCContents = """
 //     export ZSH="$HOME/.oh-my-zsh"
 
