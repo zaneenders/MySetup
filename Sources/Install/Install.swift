@@ -124,5 +124,11 @@ import ScribeSystem
 // setupZSHConfig()
 
 // TODO setup reset/override current setup and a flag to pass in
-await setupAlacritty()
 // await setupNeoVim()
+
+@main
+struct Install {
+    public static func main() async {
+        await setupAlacritty()
+    }
+}

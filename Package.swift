@@ -23,7 +23,11 @@ let package = Package(
                 "Alacritty",
                 "Git",
                 "SSH",
-            ], swiftSettings: swiftSettings),
+            ],
+            resources: [
+                .process("vscode/settings.json")
+            ],
+            swiftSettings: swiftSettings),
         .target(
             name: "Git",
             dependencies: [
