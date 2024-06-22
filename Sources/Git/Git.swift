@@ -5,12 +5,14 @@ public func setupGitConfig() {
     // Needed for push and commit but not clone
     let gitConfig: String =
         """
-         # .gitconfig
+        # .gitconfig
         [user]
                 email = 39070793+zaneenders@users.noreply.github.com
                 name = zane
         [init]
                 defaultBranch = main
+        [push]
+            autoSetupRemote = true
         """
 
     let gitPath = "\(System.homePath)/.gitconfig"
