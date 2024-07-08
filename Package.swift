@@ -8,11 +8,20 @@ let package = Package(
         .macOS("14.0"), .iOS("16.0"), .watchOS("9.0"), .tvOS("16.0"),
         .visionOS("1.0"),
     ],
+    products: [
+        .library(
+            name: "MySetup",
+            targets: [
+                "NeoVim",
+                "Alacritty",
+                "Git",
+                "SSH",
+            ])
+    ],
     dependencies: [
         .package(
             url: "git@github.com:zaneenders/ScribeSystem.git",
             revision: "9d83daf")
-        // .package(name: "ScribeSystem", path: "../ScribeSystem/"),
     ],
     targets: [
         .executableTarget(
