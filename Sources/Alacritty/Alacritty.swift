@@ -5,10 +5,10 @@ public func setupAlacritty() async {
     print("hello from Alacritty setup")
     // TODO change to path of Package
     let commands = """
-        ln -s /Users/zane/.scribe/Packages/MySetup/alacritty/* /Users/zane/.config/alacritty/
+        ln -s /Users/zane/.scribe/Projects/MySetup/alacritty/* /Users/zane/.config/alacritty/
         """
     let linuxCommand = """
-        ln -s /home/zane/.scribe/Packages/MySetup/alacritty/* /home/zane/.config/alacritty/
+        ln -s /home/zane/.scribe/Projects/MySetup/alacritty/* /home/zane/.config/alacritty/
         """
 
     let alacrittyFolderPath = "\(System.configPath)/alacritty"
